@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+    <style>
+        #boxa{
+            height:100px;
+            width:100px;
+            background-color: hotpink;
+            margin:5px ;
+            padding:5px;
+            border: 2px solid black;
+            text-align:center;
+            position:relative;
+            top:30px;
+            left:30px;
+            transition: all 0.5s ease-in;
+        }
+        #box1{
+            height:100px;
+            width:100px;
+            background-color: hotpink;
+            margin:5px ;
+            padding:5px;
+            border: 2px solid black;
+            text-align:center;
+            position:relative;
+            top:30px;
+            left:30px;
+            transition: all 0.5s ease-in;
+        }
+        #boxa:hover{
+            transform:translatex(50px);
+        }
+        #box1:hover{
+            transform:translatey(50px);
+        }
+        #box2{
+            height:100px;
+            width:100px;
+            background-color: hotpink;
+            margin:5px ;
+            padding:5px;
+            border: 2px solid black;
+            text-align:center;
+            position:relative;
+            top:30px;
+            left:30px;
+            transition: all 0.5s ease-in;
+        }
+        #box2:hover{
+            transform:translate(50px, 50px);
+        }
+    </style>
+</head>
+<body>
+    <div id="boxa" class="box">translate x</div>
+    <div id="box1" class="box">translate y</div>
+    <div id="box2" class="box">translate 50px 50px</div>
+</body>
+</html>

@@ -1,0 +1,95 @@
+import PyPDF2
+import openai
+     
+
+def read_pdf(file_path, page_number=None):
+    text = ""
+    with open(file_path, "rb") as file:
+        pdf_reader = PyPDF2.PdfReader(file)
+
+        if page_number is not None and 0 <= page_number < len(pdf_reader.pages):
+            # Read a specific page
+            page = pdf_reader.pages[page_number]
+            text += page.extract_text()
+        else:
+            # Read all pages
+            for page_num in range(len(pdf_reader.pages)):
+                page = pdf_reader.pages[page_num]
+                text += page.extract_text()
+
+    return text
+
+def read_pdf_page(file_path, page_number=None):
+    if page_number is not None:
+        return read_pdf(file_path, page_number)
+    else:
+        return read_pdf(file_path)
+     
+
+# Set your OpenAI API key
+openai.api_key = 'YOUROPENAI API'
+     
+
+def generate_questions_with_gpt3(context, num_questions=1, num_correct_options=2):
+    prompt = f"Generate multiple-choice questions based on the following paragraph:\n\n{context}\n\n1. Which of the following are examples of light-dependent reactions in photosynthesis?\n   a. Stripping electrons from suitable substances\n   b. Reducing and removing compounds\n   c. Producing glucose\n   d. Creating NADPH and ATP\n   Correct Options: (a) & (d)\n\n"
+    
+    # Use OpenAI API to generate questions
+    response = openai.Completion.create(
+        engine="text-davinci-003",  # You can experiment with different engines
+        prompt=prompt,
+        max_tokens=300  # Adjust as needed
+    )
+
+    # Extract and format the generated questions and options
+    generated_questions = response['choices'][0]['text'].split('\n')[1:-1]
+    formatted_questions = []
+    
+    for q in generated_questions:
+        question_text = q.split(' ', 1)[1]
+        options = ['a. ' + q.split(f'{chr(97+i)}. ')[1] for i in range(4)]
+        
+        correct_options_start = q.find('Correct Options:')
+        correct_options_end = q.find('\n', correct_options_start)
+        correct_options_str = q[correct_options_start + len('Correct Options:'):correct_options_end].strip()
+
+        # Extract exactly num_correct_options correct options
+        correct_options_list = [opt.strip() for opt in correct_options_str.split('&')][:num_correct_options]
+
+        # Format the question and append to the list
+        formatted_questions.append({
+            'question': question_text,
+            'options': options,
+            'correct_options': correct_options_list
+        })
+
+    return formatted_questions[:num_questions]
+     
+
+# Example usage to read all pages
+pdf_file_path = r"C:\Users\Akanksha Dixit\Downloads\Notice regarding posting videos and photographs on social media.PDF"
+pdf_text_all_pages = read_pdf_page(pdf_file_path)
+print(pdf_text_all_pages)
+
+     
+
+# Example usage to read a specific page (e.g., page 1)
+specific_page_number = 1  # Adjust as needed
+pdf_text_specific_page = read_pdf_page(pdf_file_path, page_number=specific_page_number)
+print(pdf_text_specific_page)
+     
+
+# Example usage
+context = pdf_text_specific_page
+     
+
+num_questions_to_generate = 3  # Set the number of questions you want
+num_correct_options_per_question = 2  # Set the number of correct options per question
+questions = generate_questions_with_gpt3(context, num_questions=num_questions_to_generate, num_correct_options=num_correct_options_per_question)
+     
+
+for idx, q in enumerate(questions, start=1):
+    print(f"Question {idx}: {q['question']}")
+    print("Options:", q['options'])
+    print(f"Correct Options: {', '.join(q['correct_options'])}")
+    print()
+     

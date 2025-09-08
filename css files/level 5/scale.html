@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+    <style>
+        #boxa{
+            height:100px;
+            width:100px;
+            background-color: hotpink;
+            margin:5px ;
+            padding:5px;
+            border: 2px solid black;
+            text-align:center;
+            position:relative;
+            top:30px;
+            left:30px;
+            transition: all 0.5s ease-in;
+        }
+        #box1{
+            height:100px;
+            width:100px;
+            background-color: hotpink;
+            margin:5px ;
+            padding:5px;
+            border: 2px solid black;
+            text-align:center;
+            position:relative;
+            top:30px;
+            left:30px;
+            transition: all 0.5s ease-in;
+        }
+        #boxa:hover{
+            transform:scale(2);
+        }
+        #box1:hover{
+            transform:scalex(2);
+        }
+        #box2{
+            height:100px;
+            width:100px;
+            background-color: hotpink;
+            margin:5px ;
+            padding:5px;
+            border: 2px solid black;
+            text-align:center;
+            position:relative;
+            top:30px;
+            left:30px;
+            transition: all 0.5s ease-in;
+        }
+        #box2:hover{
+            transform:scaley(2);
+        }
+        
+    </style>
+</head>
+<body>
+    <div id="boxa" class="box">scale twice</div>
+    <div id="box1" class="box">scale x </div>
+    <div id="box2" class="box">scale y</div>
+</body>
+</html>

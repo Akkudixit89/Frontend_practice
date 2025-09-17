@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>PSIT Kanpur - Departments</title>
+  <meta name="description" content="Departmental information for PSIT Kanpur">
+  <style>
+    :root{ --primary:#f3dd13; --muted:#666; --card-bg:#f8f9fa; font-family: Arial, Helvetica, sans-serif }
+    body{ margin:0; line-height:1.5; color:#222 }
+    header{ background:linear-gradient(90deg,var(--primary),#2a73d6); color:#1e1c1c; padding:18px 20px }
+    .container{ max-width:1100px; margin:20px auto; padding:0 16px }
+    nav{ display:flex; gap:16px; align-items:center }
+    nav a{ color:rgba(13, 12, 12, 0.95); text-decoration:none; font-weight:600 }
+    .hero{ background:#fff; border-radius:8px; padding:20px; box-shadow:0 4px 12px rgba(0,0,0,0.06); margin-top:14px }
+    .hero h1{ margin:0 0 6px 0 }
+    .grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:16px; margin-top:18px }
+    .card{ background:var(--card-bg); padding:14px; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.04) }
+    .card h3{ margin:0 0 6px 0 }
+    .meta{ color:var(--muted); font-size:0.95rem }
+    .btn{ display:inline-block; padding:8px 10px; border-radius:6px; text-decoration:none; background:var(--primary); color:#211f1f; font-weight:600; margin-top:10px }
+    footer{ margin-top:28px; padding:20px; text-align:center; color:#444; border-top:1px solid #eee }
+    .dept-details{ margin-top:18px; background:#fff; padding:14px; border-radius:8px; box-shadow:0 4px 10px rgba(0,0,0,0.03) }
+    .small{ font-size:0.9rem; color:var(--muted) }
+    a:focus, button:focus{ outline:3px solid rgba(11,94,215,0.18); outline-offset:2px }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <div style="flex:1">
+          <strong>PSIT Kanpur</strong>
+          <div class="small">Pranveer Singh Institute of Technology</div>
+        </div>
+        <div>
+          <a href="#departments">Departments</a>
+          <a href="#about" style="margin-left:12px">About</a>
+          <a href="#contact" style="margin-left:12px">Contact</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+  <main class="container">
+    <section class="hero" id="about">
+      <h1>Welcome to PSIT Kanpur</h1>
+      <p class="small">This is a simple institute webpage showcasing departmental information.</p>
+    </section>
+    <section id="departments">
+      <h2 style="margin-top:20px">Departments</h2>
+      <div class="grid">
+        <article class="card">
+          <h3>Computer Science & Engineering (CSE)</h3>
+          <div class="meta">Undergraduate &amp; Postgraduate programs</div>
+          <p class="small">Focus areas: Algorithms, AI/ML, Web &amp; Mobile Development, Cybersecurity.</p>
+          <a class="btn" href="#cse" onclick="showDept(event,'cse')">View details</a>
+        </article>
+        <article class="card">
+          <h3>Electronics &amp; Communication (ECE)</h3>
+          <div class="meta">Undergraduate program</div>
+          <p class="small">Focus areas: VLSI, Embedded Systems, Signal Processing, IoT.</p>
+          <a class="btn" href="#ece" onclick="showDept(event,'ece')">View details</a>
+        </article>
+        <article class="card">
+          <h3>Mechanical Engineering (ME)</h3>
+          <div class="meta">Undergraduate program</div>
+          <p class="small">Focus areas: Thermodynamics, Manufacturing, CAD/CAM, Robotics.</p>
+          <a class="btn" href="#me" onclick="showDept(event,'me')">View details</a>
+        </article>
+        <article class="card">
+          <h3>Civil Engineering</h3>
+          <div class="meta">Undergraduate program</div>
+          <p class="small">Focus areas: Structural Engineering, Construction Management, Environmental Engineering.</p>
+          <a class="btn" href="#civil" onclick="showDept(event,'civil')">View details</a>
+        </article>
+        <article class="card">
+          <h3>Management (MBA)</h3>
+          <div class="meta">Postgraduate program</div>
+          <p class="small">Focus areas: Finance, Marketing, HR, Operations.</p>
+          <a class="btn" href="#mba" onclick="showDept(event,'mba')">View details</a>
+        </article>
+        <article class="card">
+          <h3>Applied Sciences</h3>
+          <div class="meta">Departments: Mathematics, Physics, Chemistry</div>
+          <p class="small">Supports core science education and research across programs.</p>
+          <a class="btn" href="#as" onclick="showDept(event,'as')">View details</a>
+        </article>
+      </div>
+      <div id="deptDetails" class="dept-details" aria-live="polite">
+        <p>Select a department to see more information here.</p>
+      </div>
+    </section>
+    <section id="contact" style="margin-top:18px">
+      <h2>Contact &amp; Location</h2>
+      <p class="small">PSIT Kanpur official website: <a href="https://psitkanpur.ac.in" target="_blank" rel="noopener">psitkanpur.ac.in</a></p>
+      <p class="small">General contact: +91 - (replace with real number) | Email: info@psitkanpur.ac.in</p>
+    </section>
+    <footer>
+      <div class="small">© <span id="year"></span> PSIT Kanpur — This is a demo page for learning HTML/CSS.</div>
+    </footer>
+  </main>
+  <script>
+    var deptData = {
+      cse: {
+        title: 'Computer Science & Engineering (CSE)',
+        hod: 'Dr. A. R. Sharma (HOD)',
+        programs: 'B.Tech CSE, M.Tech CSE',
+        description: 'The CSE department covers programming, data structures, AI, ML, computer networks, and software engineering. Labs include Programming Lab, AI Lab, Networking Lab.',
+        facultyCount: 22
+      },
+      ece: {
+        title: 'Electronics & Communication (ECE)',
+        hod: 'Dr. S. K. Verma (HOD)',
+        programs: 'B.Tech ECE',
+        description: 'ECE focuses on electronics, communication systems, signal processing and VLSI. Facilities include Embedded Lab and Signal Processing Lab.',
+        facultyCount: 18
+      },
+      me: {
+        title: 'Mechanical Engineering (ME)',
+        hod: 'Dr. P. Mishra (HOD)',
+        programs: 'B.Tech ME',
+        description: 'Mechanical department emphasizes design, manufacturing, thermodynamics, and CAD/CAM. Workshops and machine labs available for hands-on training.',
+        facultyCount: 15
+      },
+      civil: {
+        title: 'Civil Engineering',
+        hod: 'Dr. R. Gupta (HOD)',
+        programs: 'B.Tech Civil',
+        description: 'Civil department works on structural design, surveying, construction materials and environmental engineering.',
+        facultyCount: 12
+      },
+      mba: {
+        title: 'Management (MBA)',
+        hod: 'Dr. N. Singh (HOD)',
+        programs: 'MBA',
+        description: 'MBA program focuses on business management, strategy, marketing, HR, finance and entrepreneurship.',
+        facultyCount: 10
+      },
+      as: {
+        title: 'Applied Sciences',
+        hod: 'Dr. M. Tiwari (HOD)',
+        programs: 'Mathematics, Physics, Chemistry (supporting courses)',
+        description: 'Provides foundational science education and supports research across departments.',
+        facultyCount: 9
+      }
+    };
+    function showDept(event, key){
+      if(event){
+        event.preventDefault();
+      }
+      var d = deptData[key];
+      var container = document.getElementById('deptDetails');
+      if(!d){
+        container.innerHTML = '<p>Department not found.</p>';
+        return;
+      }
+      container.innerHTML = '<h3>' + d.title + '</h3>' +
+        '<p class="small"><strong>HOD:</strong> ' + d.hod + ' | <strong>Programs:</strong> ' + d.programs + ' | <strong>Faculty:</strong> ' + d.facultyCount + '</p>' +
+        '<p>' + d.description + '</p>' +
+        '<p class="small">For more details, visit the official site or the department page on psitkanpur.ac.in</p>';
+    }
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

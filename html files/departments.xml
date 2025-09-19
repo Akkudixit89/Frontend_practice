@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="departments.xsl"?>
+<!DOCTYPE institute SYSTEM "departments.dtd">
+
+<institute>
+  <name>PSIT Kanpur</name>
+  <departments>
+    <department>
+      <title>Computer Science & Engineering</title>
+      <hod>Dr. A. R. Sharma</hod>
+      <programs>B.Tech, M.Tech</programs>
+      <focus>AI/ML, Web Development, Cybersecurity</focus>
+    </department>
+    <department>
+      <title>Electronics & Communication</title>
+      <hod>Dr. S. K. Verma</hod>
+      <programs>B.Tech</programs>
+      <focus>VLSI, Embedded Systems, IoT</focus>
+    </department>
+    <department>
+      <title>Mechanical Engineering</title>
+      <hod>Dr. P. Mishra</hod>
+      <programs>B.Tech</programs>
+      <focus>Robotics, CAD/CAM, Thermodynamics</focus>
+    </department>
+    <department>
+      <title>Civil Engineering</title>
+      <hod>Dr. R. Gupta</hod>
+      <programs>B.Tech</programs>
+      <focus>Structural Engineering, Environmental Engineering</focus>
+    </department>
+  </departments>
+</institute>

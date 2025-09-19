@@ -1,0 +1,10 @@
+body { font-family: Arial, sans-serif; margin: 20px; color: #222; }
+.header h1 { color: #0b5ed7; margin: 0; }
+.subtitle { color: #555; font-size: 0.9rem; }
+.hero { background: #f3f3f3; padding: 10px; border-radius: 6px; margin: 12px 0; }
+.dept-table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+.dept-table th, .dept-table td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+.dept-table th { background: #eaf2fb; color: #0a2b66; }
+.contact { margin-top: 14px; font-size: 0.95rem; }
+a { color: #0b5ed7; text-decoration: none; }
+a:hover { text-decoration: underline; }

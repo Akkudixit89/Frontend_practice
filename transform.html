@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Departments</title>
+  <link rel="stylesheet" href="styles.css"/>
+  <script>
+    // Function to load XML or XSL files using fetch
+    async function loadXMLDoc(file) {
+      const res = await fetch(file);
+      return res.text();
+    }
+
+    async function displayResult() {
+      const outputDiv = document.getElementById("output");
+      outputDiv.innerHTML = ""; // Clear previous content
+
+      // Load XML and XSL files
+      const xmlText = await loadXMLDoc("departments.xml");
+      const xslText = await loadXMLDoc("departments.xsl");
+
+      // Parse text into XML documents
+      const parser = new DOMParser();
+      const xml = parser.parseFromString(xmlText, "text/xml");
+      const xsl = parser.parseFromString(xslText, "text/xml");
+
+      // Transform XML using XSLTProcessor
+      const xsltProcessor = new XSLTProcessor();
+      xsltProcessor.importStylesheet(xsl);
+
+      const result = xsltProcessor.transformToFragment(xml, document);
+      outputDiv.appendChild(result); // Display result in the page
+    }
+
+    window.onload = displayResult; // Run on page load
+  </script>
+</head>
+<body>
+  <div id="output"></div>
+</body>
+</html>

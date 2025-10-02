@@ -1,5 +1,3 @@
-<!ELEMENT institute (name, departments)>
-<!ELEMENT name (#PCDATA)>
 <!ELEMENT departments (department+)>
 <!ELEMENT department (title, hod, programs, focus)>
 <!ELEMENT title (#PCDATA)>

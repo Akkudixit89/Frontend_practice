@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE departments SYSTEM "departments.dtd">
+<?xml-stylesheet type="text/xsl" href="departments.xsl"?>
+<departments>
+  <department>
+    <title>Computer Science & Engineering (CSE)</title>
+    <hod>Dr. Sharma</hod>
+    <programs>B.Tech, M.Tech</programs>
+    <focus>AI, ML, Web Development, Cybersecurity</focus>
+  </department>
+  <department>
+    <title>Electronics & Communication (ECE)</title>
+    <hod>Dr. Verma</hod>
+    <programs>B.Tech</programs>
+    <focus>VLSI, Embedded Systems, IoT</focus>
+  </department>
+  <department>
+    <title>Mechanical Engineering (ME)</title>
+    <hod>Dr. Mishra</hod>
+    <programs>B.Tech</programs>
+    <focus>Robotics, CAD/CAM, Thermodynamics</focus>
+  </department>
+  <department>
+    <title>Civil Engineering</title>
+    <hod>Dr. Gupta</hod>
+    <programs>B.Tech</programs>
+    <focus>Structural Engg, Construction, Environmental</focus>
+  </department>
+</departments>

@@ -1,0 +1,108 @@
+
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Department Information</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    h1 { text-align: center; color: navy; }
+    table { border-collapse: collapse; margin: 20px auto; width: 80%; }
+    th, td { border: 1px solid black; padding: 8px; text-align: center; }
+    th { background: gold; }
+    p { text-align: center; margin-top: 20px; }
+    a { color: blue; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    pre { background: #f0f0f0; padding: 10px; border: 1px solid #ccc; }
+  </style>
+  <script>
+    window.onload = function() {
+      // Inline XML data
+      const xmlText = `
+        <departments>
+          <department>
+            <title>Computer Science &amp; Engineering (CSE)</title>
+            <hod>Dr. Sharma</hod>
+            <programs>B.Tech, M.Tech</programs>
+            <focus>AI, ML, Web Development, Cybersecurity</focus>
+          </department>
+          <department>
+            <title>Electronics &amp; Communication (ECE)</title>
+            <hod>Dr. Verma</hod>
+            <programs>B.Tech</programs>
+            <focus>VLSI, Embedded Systems, IoT</focus>
+          </department>
+          <department>
+            <title>Mechanical Engineering (ME)</title>
+            <hod>Dr. Mishra</hod>
+            <programs>B.Tech</programs>
+            <focus>Robotics, CAD/CAM, Thermodynamics</focus>
+          </department>
+          <department>
+            <title>Civil Engineering</title>
+            <hod>Dr. Gupta</hod>
+            <programs>B.Tech</programs>
+            <focus>Structural Engg, Construction, Environmental</focus>
+          </department>
+        </departments>
+      `;
+
+      // Inline XSL
+      const xslText = `
+        <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+          <xsl:output method="html" indent="yes"/>
+          <xsl:template match="/">
+            <h1>Department Information</h1>
+            <table>
+              <tr>
+                <th>Title</th>
+                <th>HOD</th>
+                <th>Programs</th>
+                <th>Focus Areas</th>
+              </tr>
+              <xsl:for-each select="departments/department">
+                <tr>
+                  <td><xsl:value-of select="title"/></td>
+                  <td><xsl:value-of select="hod"/></td>
+                  <td><xsl:value-of select="programs"/></td>
+                  <td><xsl:value-of select="focus"/></td>
+                </tr>
+              </xsl:for-each>
+            </table>
+            <p>Visit our official site: <a href="https://psitkanpur.ac.in">psitkanpur.ac.in</a></p>
+          </xsl:template>
+        </xsl:stylesheet>
+      `;
+
+      // Parse XML and XSL
+      const parser = new DOMParser();
+      const xml = parser.parseFromString(xmlText, "text/xml");
+      const xsl = parser.parseFromString(xslText, "text/xml");
+
+      // Apply XSLT
+      const xsltProcessor = new XSLTProcessor();
+      xsltProcessor.importStylesheet(xsl);
+      const result = xsltProcessor.transformToFragment(xml, document);
+
+      // Append the table
+      document.body.appendChild(result);
+
+      // Show the DTD rules on page for assignment
+      const dtdRules = `
+<!ELEMENT departments (department+)>
+<!ELEMENT department (title, hod, programs, focus)>
+<!ELEMENT title (#PCDATA)>
+<!ELEMENT hod (#PCDATA)>
+<!ELEMENT programs (#PCDATA)>
+<!ELEMENT focus (#PCDATA)>
+      `;
+      const pre = document.createElement("pre");
+      pre.textContent = dtdRules;
+      document.body.appendChild(document.createElement("hr"));
+      document.body.appendChild(document.createTextNode("DTD Rules used:"));
+      document.body.appendChild(pre);
+    };
+  </script>
+</head>
+<body>
+</body>
+</html>
